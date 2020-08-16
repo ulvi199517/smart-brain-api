@@ -11,10 +11,12 @@ const image = require('./controllers/handleImage');
 const db = knex({
     client: 'pg',
     connection: {
-     connectString : process.env.DATABASE_URL,
-      ssl:true
-    }
-  });
+      connectString : process.env.DATABASE_URL,
+      ssl: {
+      rejectUnauthorized: false,
+      },
+    },
+});
 
 app.use(express.json());
 app.use(cors());
